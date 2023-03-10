@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Icons from 'react-native-vector-icons/AntDesign';
 import Icons1 from 'react-native-vector-icons/FontAwesome'
 import Icons2 from 'react-native-vector-icons/Feather'
@@ -7,6 +7,7 @@ import {
     SafeAreaView, Text, View, StyleSheet, ScrollView, Image, Alert, TouchableOpacity, FlatList, StatusBar
 } from 'react-native';
 import Header from '../Components/Header';
+import { MyContext1 } from '../Contexts/Context1';
 
 
 
@@ -47,6 +48,21 @@ const PostImage = ({ url }) => {
 
 
 const Post = ({ item }) => {
+    const { initialState, setInitialState } = useContext(MyContext1);
+    console.log(initialState);
+
+
+    // useEffect(() => {
+
+    // }, [])
+
+    function hey() {
+        setInitialState({
+        latitude: 10,
+        longitude: 10,
+        });
+    }
+
     return (
         <>
             <View style={styles.postBox}>
@@ -65,6 +81,9 @@ const Post = ({ item }) => {
                 </View>
                 <View style={styles.postTextView}>
                     <SeeMoreText text={item.text} />
+                    <TouchableOpacity onPress={hey}>
+                        <Text>{initialState.latitude }</Text>
+                    </TouchableOpacity>
                 </View>
                 <FlatList
                     horizontal

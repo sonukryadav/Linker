@@ -21,4 +21,5 @@ const Context1 = ({ children }) => {
 }
 
 export default Context1;
+export { MyContext1 } ;
 
