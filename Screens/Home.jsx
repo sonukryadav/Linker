@@ -8,7 +8,6 @@ import {
     SafeAreaView, Text, View, StyleSheet, ScrollView, Image, Alert, TouchableOpacity, FlatList, StatusBar
 } from 'react-native';
 import Header from '../Components/Header';
-import sonu1 from "../assets/sonuImage.png";
 
 
 
@@ -44,90 +43,65 @@ const PostImage = ({ url }) => {
     );
 }
 
-let postImages = [
-    "https://images.pexels.com/photos/4825701/pexels-photo-4825701.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/4356144/pexels-photo-4356144.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/1252500/pexels-photo-1252500.jpeg?auto=compress&cs=tinysrgb&w=400"
-]
+
 
 
 const Post = ({ item }) => {
     return (
         <>
             <View style={styles.postBox}>
-
                 <View style={styles.postBoxHead}>
-
-                    <View style={styles.view3}>
-                        <Image style={styles.image1} source={sonu1} />
+                    <View>
+                        <Image style={styles.image1} source={{ uri: item.profilePicture }} />
                     </View>
-
                     <View style={styles.view4}>
                         <Text style={styles.postUserName}> {item.name}</Text>
                         <Text style={styles.postUserAbout}> {item.role}</Text>
-                        <Text style={styles.postUserTime}> {item.time} • 🕐</Text>
+                        <Text style={styles.postUserTime}>🕐 • {item.time}   🚩 • {100} km</Text>
                     </View>
-
                     <View style={styles.view5}>
                         <Text style={styles.postUserConnect}> + Connect</Text>
                     </View>
-
                 </View>
-
-
                 <View style={styles.postTextView}>
                     <SeeMoreText text={item.text} />
                 </View>
-
                 <FlatList
                     horizontal
-                    data={postImages}
+                    data={item.images}
                     renderItem={({ item }) => (<PostImage url={item} />)}
                     keyExtractor={item => item}
                     style={{ marginVertical: 20 }}
                 />
-
-
                 <View style={{ flexDirection: "row", borderWidth: 0, borderColor: "white", padding: 5 }}>
-
                     <View style={{ flex: 1 }}>
                         <Text style={{ color: "white" }}>{item.likes} likes</Text>
                     </View>
-
                     <View style={{ flexDirection: "row" }}>
                         <Text style={{ color: "white", marginHorizontal: 8 }}>{item.comment} comments</Text>
                         <Text style={{ color: "white" }}>•</Text>
                         <Text style={{ color: "white", marginHorizontal: 8 }}> {item.repost} reposts</Text>
                     </View>
-
                 </View>
-
-
                 <View style={{ marginVertical: 10, flexDirection: "row", flex: 1, justifyContent: "space-between", paddingHorizontal: 5 }}>
-
                     <View>
                         <TouchableOpacity onPress={() => Alert.alert("Like", "You liked the post.")}>
                             <Icons name={"like2"} size={25} color={"white"} />
                             <Text style={{ color: "white" }}>Like</Text>
                         </TouchableOpacity>
                     </View>
-
                     <View>
                         <TouchableOpacity onPress={() => Alert.alert("Comment", "You commented on the post.")}>
                             <Icons1 name={"commenting-o"} size={25} color={"white"} />
                             <Text style={{ color: "white" }}>Comment</Text>
                         </TouchableOpacity>
                     </View>
-
                     <View>
                         <TouchableOpacity onPress={() => Alert.alert("Repost", "You reposted the post.")}>
                             <Icons2 name={"repeat"} size={25} color={"white"} />
                             <Text style={{ color: "white" }}>Repost</Text>
                         </TouchableOpacity>
                     </View>
-
-
                     <View>
                         <TouchableOpacity onPress={() => Alert.alert("Send", "Post sent.")}>
                             <Icons1 name={"send"} size={25} color={"white"} />
