@@ -1,5 +1,4 @@
-import * as React from 'react';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React, { useContext } from 'react';
 import Icons from 'react-native-vector-icons/AntDesign';
 import Icons1 from 'react-native-vector-icons/FontAwesome'
 import Icons2 from 'react-native-vector-icons/Feather'
@@ -8,6 +7,7 @@ import {
     SafeAreaView, Text, View, StyleSheet, ScrollView, Image, Alert, TouchableOpacity, FlatList, StatusBar
 } from 'react-native';
 import Header from '../Components/Header';
+
 
 
 
