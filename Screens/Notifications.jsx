@@ -32,7 +32,7 @@ const Notification = ({ navigation}) => {
 function Notifications() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Notifications" component={Notification} options={{ headerShown: false, title:"Notifications" }} />
+            <Stack.Screen name="Notification" component={Notification} options={{ headerShown: false, title:"Notifications" }} />
             <Stack.Screen name="RecentConnect" component={RecentConnectScreen} options={{ headerShown: true, title:"Recent Connect" }} />
             <Stack.Screen name="EarlyApply" component={EarlyApplyScreen} options={{ headerShown: true, title:"Early Apply" }} />
             <Stack.Screen name="JobAlert" component={JobAlertScreen} options={{ headerShown: true, title:"Job Alert" }} />

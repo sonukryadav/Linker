@@ -38,9 +38,9 @@ const SeeMoreText = ({ text }) => {
 
 const PostImage = ({ url }) => {
     return (
-        <>
-            <Image source={{ uri: url }} style={{ width: 350, height: 250, margin: 10, borderRadius: 10 }} />
-        </>
+        <View style={styles.postImageView}>
+            <Image source={{ uri: url }} resizeMode='contain' style={styles.postImage} />
+        </View>
     );
 }
 
@@ -48,21 +48,7 @@ const PostImage = ({ url }) => {
 
 
 const Post = ({ item }) => {
-    const { initialState, setInitialState } = useContext(MyContext1);
-    console.log(initialState);
-
-
-    // useEffect(() => {
-
-    // }, [])
-
-    function hey() {
-        setInitialState({
-        latitude: 10,
-        longitude: 10,
-        });
-    }
-
+    // const { initialState, setInitialState } = useContext(MyContext1);
     return (
         <>
             <View style={styles.postBox}>
@@ -81,16 +67,14 @@ const Post = ({ item }) => {
                 </View>
                 <View style={styles.postTextView}>
                     <SeeMoreText text={item.text} />
-                    <TouchableOpacity onPress={hey}>
-                        <Text>{initialState.latitude }</Text>
-                    </TouchableOpacity>
                 </View>
                 <FlatList
                     horizontal
                     data={item.images}
                     renderItem={({ item }) => (<PostImage url={item} />)}
                     keyExtractor={item => item}
-                    style={{ marginVertical: 20 }}
+                    // contentContainerStyle={{}}
+                    style={styles.imageFlatList}
                 />
                 <View style={{ flexDirection: "row", borderWidth: 0, borderColor: "white", padding: 5 }}>
                     <View style={{ flex: 1 }}>
@@ -207,6 +191,17 @@ const styles = StyleSheet.create({
         // borderWidth:1,
         borderColor: "teal",
         padding: 8
+    },
+    imageFlatList: {
+        marginVertical: 20,
+    },
+    postImageView: {
+    },
+    postImage: {
+        width: 350,
+        height: 250,
+        margin: 10,
+        borderRadius: 10
     },
     postText: {
         color: "white",

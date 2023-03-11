@@ -2,11 +2,15 @@ import { Text, View, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem, } from '@react-navigation/drawer';
 import TabNavigation from './TabNavigation';
+import Events from '../Screens/Events';
+import Groups from '../Screens/Groups';
+import Settings from '../Screens/Settings';
+import Premium from '../Screens/Premium';
 
 const Drawer = createDrawerNavigator();
 
 
-function CustomDrawerContent({ ...props }) {
+function CustomDrawerContent(props) {
     const { navigation } = props;
     return (
         <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1, justifyContent: 'flex-end' }}>
@@ -24,10 +28,18 @@ function CustomDrawerContent({ ...props }) {
                 />
                 <View style={{ borderBottomWidth: 0.5, borderColor: "gray", marginBottom: 30 }}></View>
 
-                <DrawerItemList {...props} />
+                {/* <DrawerItemList {...props} /> */}
+                <DrawerItem
+                    label={() => (
+                        <View>
+                            <Text>Go to Home</Text>
+                        </View>
+                    )}
+                    onPress={() => navigation.navigate("Go to Home")}
+                />
                 <DrawerItem {...props}
                     label={() => (<Text>Groups</Text>)}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("Groups")}
                 />
                 <DrawerItem
                     label={() => (
@@ -35,7 +47,7 @@ function CustomDrawerContent({ ...props }) {
                             <Text>Events</Text>
                         </View>
                     )}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("Events")}
                 />
             </View>
 
@@ -47,14 +59,14 @@ function CustomDrawerContent({ ...props }) {
                     label={() => (
                         <Text>Try premium for free</Text>
                     )}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("Premium")}
                 />
                 <DrawerItem
                     icon={({ focused, color, size }) => <Ionicons style={{ marginRight: -25 }} color={color} size={25} name={focused ? 'settings' : 'settings-outline'} />}
                     label={() => (
                         <Text>Setting</Text>
                     )}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("Settings")}
                 />
             </View>
         </DrawerContentScrollView>
@@ -71,7 +83,11 @@ const DrawerNavigation = () => {
             defaultStatus={"closed"}
             drawerContent={(props) => (<CustomDrawerContent {...props} />)}
         >
-            <Drawer.Screen name="Home" component={TabNavigation} options={{ headerShown: false }} />
+            <Drawer.Screen name="Go to Home" component={TabNavigation} options={{ headerShown: false }} />
+            <Drawer.Screen name="Groups" component={Groups} options={{ headerShown: false }} />
+            <Drawer.Screen name="Events" component={Events} options={{ headerShown: false }} />
+            <Drawer.Screen name="Premium" component={Premium} options={{ headerShown: false }} />
+            <Drawer.Screen name="Settings" component={Settings} options={{ headerShown: false }} />
         </Drawer.Navigator>
     );
 }
