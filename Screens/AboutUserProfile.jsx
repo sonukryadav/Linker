@@ -3,17 +3,17 @@ import { View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../Components/Header';
 
-const Events = ({ navigation }) => {
+const AboutUserProfile = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
                 {/* <Header navigation={navigation} /> */}
                 <View style={{ alignItems: "center" }}>
-                    <Text>Events</Text>
+                    <Text>About User Profile</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
 }
 
-export default Events;
+export default AboutUserProfile;

@@ -7,7 +7,7 @@ const Premium = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
-                <Header navigation={navigation} />
+                {/* <Header navigation={navigation} /> */}
                 <View style={{ alignItems: "center" }}>
                     <Text>Premium</Text>
                 </View>

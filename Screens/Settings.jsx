@@ -7,7 +7,7 @@ const Settings = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
-                <Header navigation={navigation} />
+                {/* <Header navigation={navigation} /> */}
                 <View style={{ alignItems: "center" }}>
                     <Text>Settings</Text>
                 </View>
