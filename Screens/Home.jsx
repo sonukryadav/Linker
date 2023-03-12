@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import Header from '../Components/Header';
 import { MyContext1 } from '../Contexts/Context1';
-import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorage/AsyncStorage";
+import { distanceInKm } from '../Logics/DistanceFromMyLocation';
+
 
 
 
@@ -49,7 +50,21 @@ const PostImage = ({ url }) => {
 
 
 const Post = ({ item }) => {
-    const { location, setLocation } = useContext(MyContext1);
+    const [distance, setDistance] = useState(0);
+    // const { location, setLocation } = useContext(MyContext1);
+    let coord2 = {
+        "latitude": item.location.lat,
+        "longitude": item.location.long
+    }
+
+    const distanceFun = async () => {
+        let data = await distanceInKm(coord2);
+        setDistance((p) => data);
+    }
+
+    useEffect(() => {
+        distanceFun();
+    }, []);
 
     return (
         <>
@@ -61,7 +76,7 @@ const Post = ({ item }) => {
                     <View style={styles.view4}>
                         <Text style={styles.postUserName}> {item.name}</Text>
                         <Text style={styles.postUserAbout}> {item.role}</Text>
-                        <Text style={styles.postUserTime}>🕐 • {item.time}   🚩 • {100} km</Text>
+                        <Text style={styles.postUserTime}>🕐 • {item.time}   🚩 • {distance} km</Text>
                     </View>
                     <View style={styles.view5}>
                         <Text style={styles.postUserConnect}> + Connect</Text>
@@ -69,7 +84,6 @@ const Post = ({ item }) => {
                 </View>
                 <View style={styles.postTextView}>
                     <SeeMoreText text={item.text} />
-                    <Text style={{color:"white"}}>latitude : {location.latitude} and longitude: {location.longitude}</Text>
                 </View>
                 <FlatList
                     horizontal
@@ -122,6 +136,11 @@ const Post = ({ item }) => {
 
 
 export default function Home({ navigation }) {
+
+    // useEffect(() => {
+    //     distanceInKm();
+    // },[])
+
     return (
         <SafeAreaView style={[styles.container]}>
             <StatusBar/>

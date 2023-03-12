@@ -15,7 +15,8 @@ const AsyncSet = async (key, value) => {
 const AsyncGet = async (key) => {
     try {
         let Key = JSON.stringify(key);
-        let data = await AsyncStorage.getItem(Key);
+        let data1 = await AsyncStorage.getItem(Key);
+        let data = JSON.parse(data1);
         console.log(`Retrieved ${key} successfully`);
         return data;
     } catch (err) {
