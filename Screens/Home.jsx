@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Icons from 'react-native-vector-icons/AntDesign';
 import Icons1 from 'react-native-vector-icons/FontAwesome'
 import Icons2 from 'react-native-vector-icons/Feather'
@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Header from '../Components/Header';
 import { MyContext1 } from '../Contexts/Context1';
+import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorage/AsyncStorage";
 
 
 
@@ -49,6 +50,7 @@ const PostImage = ({ url }) => {
 
 const Post = ({ item }) => {
     const { location, setLocation } = useContext(MyContext1);
+
     return (
         <>
             <View style={styles.postBox}>
@@ -67,7 +69,7 @@ const Post = ({ item }) => {
                 </View>
                 <View style={styles.postTextView}>
                     <SeeMoreText text={item.text} />
-                    <Text style={{color:"white"}}>{location.latitude} and {location.longitude}</Text>
+                    <Text style={{color:"white"}}>latitude : {location.latitude} and longitude: {location.longitude}</Text>
                 </View>
                 <FlatList
                     horizontal

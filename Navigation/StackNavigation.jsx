@@ -1,4 +1,4 @@
-import React, { useContext, useEffect} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Groups from '../Screens/Groups';
 import Events from '../Screens/Events';
@@ -14,35 +14,26 @@ const NativeStack = createNativeStackNavigator();
 
 const NativeStackNavigation = () => {
 
+    // const [currentLo, setCurrentLo] = useState();
     const { location, setLocation } = useContext(MyContext1);
 
     let MyLocation = async () => {
         try {
             const coordinate = await MyCurrentLocation();
-            console.log(coordinate);
-            console.log(location);
-            // setLocation(coordinate);
+            // console.log(coordinate);
+            // console.log(location);
+            // setCurrentLo(coordinate);
+            setLocation((prev) => ({ ...prev, ...coordinate }));
         } catch (err) {
-            console.log(err + " ---: error in MyLocation function.")
+            console.log(err + " ---: error in MyLocation function.");
         }
     }
 
     useEffect(() => {
         MyLocation();
-        // console.log(coordinate ,"nnnnnnnnnnnn");
-        // setLocation(coordinate);
-        // generalExecuteSql(db, `INSERT INTO ${tbl} (location, locate) VALUES (?, ?)`, [coordinate, 0])
-        //   .then((tx) => {
-        //     console.log("Successfully inserted data to table :---->", tx);
-
-        //     generalExecuteSql(db, `SELECT * FROM ${tbl}`)
-        //       .then((data) => {
-        //         console.log("Table data :----> ", data?.rows?._array);
-        //       })
-        //       .catch((err) => console.log("Failed in retrieving table data", data));
-        //   })
-        //   .catch((err) => console.log("Failure while inserting data to table :--->", err));
     }, []);
+
+
     return (
         <NativeStack.Navigator>
             <NativeStack.Screen name="First1" component={DrawerNavigation} options={{ headerShown: false }} />
