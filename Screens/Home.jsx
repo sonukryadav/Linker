@@ -48,7 +48,7 @@ const PostImage = ({ url }) => {
 
 
 const Post = ({ item }) => {
-    // const { location, setLocation } = useContext(MyContext1);
+    const { location, setLocation } = useContext(MyContext1);
     return (
         <>
             <View style={styles.postBox}>
@@ -67,6 +67,7 @@ const Post = ({ item }) => {
                 </View>
                 <View style={styles.postTextView}>
                     <SeeMoreText text={item.text} />
+                    <Text style={{color:"white"}}>{location.latitude} and {location.longitude}</Text>
                 </View>
                 <FlatList
                     horizontal

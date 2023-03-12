@@ -7,9 +7,12 @@ const MyCurrentLocation = async () => {
         return;
     }
     let location = await Location.getCurrentPositionAsync({});
-    console.log(location.coords.latitude);
-    console.log(location.coords.longitude);
+    // console.log(location.coords.latitude);
+    // console.log(location.coords.longitude);
+    return ({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+    });
 }
-
 
 export default MyCurrentLocation;
