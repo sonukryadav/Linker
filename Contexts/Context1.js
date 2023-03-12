@@ -12,9 +12,9 @@ const MyContext1 = createContext(defaultState);
 
 const Context1 = ({ children }) => {
     const { myLocation } = useContext(MyContext1);
-    const [initialState, setInitialState] = useState(myLocation);
+    const [location, setLocation] = useState(myLocation);
     return (
-        <MyContext1.Provider value={{ initialState, setInitialState }}>
+        <MyContext1.Provider value={{ location, setLocation }}>
             { children }
         </MyContext1.Provider>
     );

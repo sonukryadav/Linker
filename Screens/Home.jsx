@@ -48,7 +48,7 @@ const PostImage = ({ url }) => {
 
 
 const Post = ({ item }) => {
-    // const { initialState, setInitialState } = useContext(MyContext1);
+    // const { location, setLocation } = useContext(MyContext1);
     return (
         <>
             <View style={styles.postBox}>

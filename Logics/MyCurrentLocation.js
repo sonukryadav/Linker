@@ -6,8 +6,9 @@ const MyCurrentLocation = async () => {
         setErrorMsg('Permission to access location was denied');
         return;
     }
-    let location = await Location.requestForegroundPermissionsAsync();
-    console.log(location);
+    let location = await Location.getCurrentPositionAsync({});
+    console.log(location.coords.latitude);
+    console.log(location.coords.longitude);
 }
 
 
