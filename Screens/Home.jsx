@@ -9,7 +9,7 @@ import {
 import Header from '../Components/Header';
 import { MyContext1 } from '../Contexts/Context1';
 import { distanceInKm } from '../Logics/DistanceFromMyLocation';
-
+import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorage/AsyncStorage"
 
 
 
@@ -50,7 +50,7 @@ const PostImage = ({ url }) => {
 
 
 const Post = ({ item }) => {
-    const [distance, setDistance] = useState(0);
+    const [distance, setDistance] = useState("Calculating...");
     // const { location, setLocation } = useContext(MyContext1);
     let coord2 = {
         "latitude": item.location.lat,
@@ -64,7 +64,7 @@ const Post = ({ item }) => {
 
     useEffect(() => {
         distanceFun();
-    }, []);
+    }, [distance]);
 
     return (
         <>
@@ -76,7 +76,7 @@ const Post = ({ item }) => {
                     <View style={styles.view4}>
                         <Text style={styles.postUserName}> {item.name}</Text>
                         <Text style={styles.postUserAbout}> {item.role}</Text>
-                        <Text style={styles.postUserTime}>🕐 • {item.time}   🚩 • {distance} km</Text>
+                        <Text style={styles.postUserTime}>🕐 • {item.time}   🚩 • {distance} </Text>
                     </View>
                     <View style={styles.view5}>
                         <Text style={styles.postUserConnect}> + Connect</Text>

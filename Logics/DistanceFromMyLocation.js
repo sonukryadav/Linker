@@ -10,7 +10,7 @@ const distanceInKm = async (coord2 = {
     let value = getDistance(coord1, coord2);
     let disk = convertDistance(value, "km");
     // console.log(disk);
-    return disk;
+    return (disk + " km");
 }
 
 
