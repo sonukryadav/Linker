@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
+import { RefreshControl } from "react-native";
 import Icons from 'react-native-vector-icons/AntDesign';
 import Icons1 from 'react-native-vector-icons/FontAwesome'
 import Icons2 from 'react-native-vector-icons/Feather'
@@ -9,7 +10,7 @@ import {
 import Header from '../Components/Header';
 import { MyContext1 } from '../Contexts/Context1';
 import { distanceInKm } from '../Logics/DistanceFromMyLocation';
-import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorage/AsyncStorage"
+import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorage/AsyncStorage";
 
 
 
@@ -58,13 +59,15 @@ const Post = ({ item }) => {
     }
 
     const distanceFun = async () => {
-        let data = await distanceInKm(coord2);
-        setDistance((p) => data);
+        let newDistance = await distanceInKm(coord2);
+        setDistance((prev) => newDistance);
     }
 
     useEffect(() => {
         distanceFun();
     }, [distance]);
+
+
 
     return (
         <>
@@ -136,21 +139,31 @@ const Post = ({ item }) => {
 
 
 export default function Home({ navigation }) {
+    const [refreshing, setRefreshing] = useState(false);
 
-    // useEffect(() => {
-    //     distanceInKm();
-    // },[])
+    const onRefresh = useCallback(() => {
+        setRefreshing(refreshing=>!refreshing);
+        setTimeout(() => {
+            setRefreshing(refreshing=>!refreshing);
+        }, 500);
+    }, []);
+
 
     return (
         <SafeAreaView style={[styles.container]}>
             <StatusBar/>
-            <ScrollView>
-            </ScrollView>
+            {/* <ScrollView>
+            </ScrollView> */}
             <FlatList
                 data={post}
                 renderItem={({ item }) => (<Post item={item} />)}
                 keyExtractor={item => (item.id).toString()}
                 ListHeaderComponent={<Header navigation={navigation} />}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh}
+                        colors={["green", "blue", "red", "teal",]}
+                    />
+                }
             />
         </SafeAreaView>
     );
